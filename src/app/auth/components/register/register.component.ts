@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { BackendErrorsInterface } from 'src/app/shared/types/backendErrors.interface';
+import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
+import { AuthService } from '../../services/auth.service';
 
-import { registerAction } from '../../store/actions';
-import { isSubmittingSelector } from '../../store/selectors';
+import { registerAction } from '../../store/actions/register.actions';
+import { isSubmittingSelector, validationErrorsSelector } from '../../store/selectors';
 import { AppStateInterface } from '../../types/appState.interface';
+import { RegisterRequestInterface } from '../../types/registerRequest.interface';
 
 @Component({
   selector: 'app-register',
@@ -15,8 +19,13 @@ import { AppStateInterface } from '../../types/appState.interface';
 export class RegisterComponent implements OnInit {
   form: FormGroup;
   isSubmitting$: Observable<boolean>;
+  backendErrors$: Observable<BackendErrorsInterface | null>
 
-  constructor(private fb: FormBuilder, private store: Store<AppStateInterface>) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<AppStateInterface>,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -25,6 +34,7 @@ export class RegisterComponent implements OnInit {
 
   intializeValues() {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+    this.backendErrors$ = this.store.pipe(select(validationErrorsSelector))
   }
 
   initializeForm(): void {
@@ -37,6 +47,10 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     console.log('submit', this.form.value, this.form.valid);
-    this.store.dispatch(registerAction(this.form.value));
+    const request: RegisterRequestInterface = {
+      user: this.form.value
+    }
+    this.store.dispatch(registerAction({request}));
+ 
   }
 }
