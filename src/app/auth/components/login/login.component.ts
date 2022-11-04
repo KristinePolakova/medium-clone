@@ -11,7 +11,7 @@ import {
   validationErrorsSelector,
 } from '../../store/selectors';
 import { AppStateInterface } from '../../types/appState.interface';
-import { LoginRequestInterface } from '../../types/loginrequest.interface';
+import { LoginRequestInterface } from '../../types/loginRequest.interface';
 
 @Component({
   selector: 'app-login',
