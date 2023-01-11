@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,10 +23,7 @@ import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
     AppRoutingModule,
     AuthModule,
     StoreModule.forRoot({ router: routerReducer }),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25,
-      logOnly: environment.production,
-    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([]),
     TopBarModule,
     GlobalFeedModule,
