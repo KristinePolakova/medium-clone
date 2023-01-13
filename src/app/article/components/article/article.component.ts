@@ -5,6 +5,7 @@ import { combineLatest, map, Observable, Subscription } from 'rxjs';
 import { currentUserSelector } from 'src/app/auth/store/selectors';
 import { ArticleInterface } from 'src/app/shared/types/article.interface';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
+import { deleteArticleAction } from '../../store/actions/deleteArticle.action';
 import { getArticleAction } from '../../store/actions/getArticle.action';
 import {
   articleFeatureSelector,
@@ -71,5 +72,9 @@ export class ArticleComponent implements OnInit, OnDestroy {
       .subscribe((article: ArticleInterface | null) => {
         this.article = article;
       });
+  }
+
+  deleteArticle(): void {
+    this.store.dispatch(deleteArticleAction({ slug: this.slug }));
   }
 }

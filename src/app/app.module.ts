@@ -17,6 +17,8 @@ import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { YourFeedModule } from './yourFeed/your-feed.module';
 import { TagFeedModule } from './tagFeed/tag-feed.module';
 import { ArticleModule } from './article/article.module';
+import { CreateArticleModule } from './createArticle/create-article.module';
+import { ArticleFormModule } from './shared/modules/articleForm/article-form.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +35,9 @@ import { ArticleModule } from './article/article.module';
     StoreRouterConnectingModule.forRoot(),
     YourFeedModule,
     TagFeedModule,
+    CreateArticleModule,
     ArticleModule,
+    ArticleFormModule,
   ],
   providers: [
     PersistanceService,
