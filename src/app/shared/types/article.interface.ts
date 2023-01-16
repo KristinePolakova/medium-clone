@@ -7,7 +7,7 @@ export interface ArticleInterface {
   body: string;
   createdAt: string;
   updatedAt: string;
-  tagList: PopularTagType;
+  tagList: PopularTagType[];
   description: string;
   author: ProfileInterface;
   favorited: boolean;

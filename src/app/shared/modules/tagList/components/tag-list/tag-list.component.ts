@@ -7,7 +7,7 @@ import { PopularTagType } from 'src/app/shared/types/popularTag.type';
   styleUrls: ['./tag-list.component.scss'],
 })
 export class TagListComponent implements OnInit {
-  @Input('tags') tagsProps: PopularTagType;
+  @Input('tags') tagsProps: PopularTagType[];
   constructor() {}
 
   ngOnInit(): void {}

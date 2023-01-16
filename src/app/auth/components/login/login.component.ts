@@ -25,8 +25,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private store: Store<AppStateInterface>,
-    private authService: AuthService
+    private store: Store<AppStateInterface>
   ) {}
 
   ngOnInit(): void {

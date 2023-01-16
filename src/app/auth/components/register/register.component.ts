@@ -7,7 +7,10 @@ import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface
 import { AuthService } from '../../services/auth.service';
 
 import { registerAction } from '../../store/actions/register.actions';
-import { isSubmittingSelector, validationErrorsSelector } from '../../store/selectors';
+import {
+  isSubmittingSelector,
+  validationErrorsSelector,
+} from '../../store/selectors';
 import { AppStateInterface } from '../../types/appState.interface';
 import { RegisterRequestInterface } from '../../types/registerRequest.interface';
 
@@ -19,12 +22,11 @@ import { RegisterRequestInterface } from '../../types/registerRequest.interface'
 export class RegisterComponent implements OnInit {
   form: FormGroup;
   isSubmitting$: Observable<boolean>;
-  backendErrors$: Observable<BackendErrorsInterface | null>
+  backendErrors$: Observable<BackendErrorsInterface | null>;
 
   constructor(
     private fb: FormBuilder,
-    private store: Store<AppStateInterface>,
-    private authService: AuthService
+    private store: Store<AppStateInterface>
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +36,7 @@ export class RegisterComponent implements OnInit {
 
   intializeValues() {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
-    this.backendErrors$ = this.store.pipe(select(validationErrorsSelector))
+    this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
   }
 
   initializeForm(): void {
@@ -48,9 +50,8 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
     console.log('submit', this.form.value, this.form.valid);
     const request: RegisterRequestInterface = {
-      user: this.form.value
-    }
-    this.store.dispatch(registerAction({request}));
- 
+      user: this.form.value,
+    };
+    this.store.dispatch(registerAction({ request }));
   }
 }

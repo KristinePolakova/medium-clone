@@ -40,6 +40,10 @@ export class FeedComponent implements OnInit, OnDestroy {
     this.initializeListeners();
   }
 
+  ngOnDestroy(): void {
+    this.queryParamsSubscription.unsubscribe();
+  }
+
   initializeListeners(): void {
     this.queryParamsSubscription = this.route.queryParams.subscribe(
       (params: Params) => {
@@ -68,9 +72,5 @@ export class FeedComponent implements OnInit, OnDestroy {
     const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`;
 
     this.store.dispatch(getFeedAction({ url: apiUrlWithParams }));
-  }
-
-  ngOnDestroy(): void {
-    this.queryParamsSubscription.unsubscribe();
   }
 }

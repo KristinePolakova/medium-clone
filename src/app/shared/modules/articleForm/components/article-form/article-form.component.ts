@@ -11,7 +11,7 @@ import { BackendErrorsInterface } from 'src/app/shared/types/backendErrors.inter
 export class ArticleFormComponent implements OnInit {
   @Input('initialValues') initialValuesProps: ArticleInputInterface;
   @Input('isSubmitting') isSubmittingProps: boolean;
-  @Input('errors') errorsProps: BackendErrorsInterface;
+  @Input('errors') errorsProps: BackendErrorsInterface | null;
 
   @Output('articleSubmit') articleSubmitEvent =
     new EventEmitter<ArticleInputInterface>();
@@ -29,7 +29,7 @@ export class ArticleFormComponent implements OnInit {
       title: this.initialValuesProps.title,
       description: this.initialValuesProps.description,
       body: this.initialValuesProps.body,
-      tagList: this.initialValuesProps.tagList.join(' '),
+      //tagList: this.initialValuesProps.tagList.join(' '),
     });
   }
 
