@@ -19,6 +19,7 @@ import { TagFeedModule } from './tagFeed/tag-feed.module';
 import { ArticleModule } from './article/article.module';
 import { CreateArticleModule } from './createArticle/create-article.module';
 import { ArticleFormModule } from './shared/modules/articleForm/article-form.module';
+import { EditArticleModule } from './editArticle/edit-article.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,6 +39,7 @@ import { ArticleFormModule } from './shared/modules/articleForm/article-form.mod
     CreateArticleModule,
     ArticleModule,
     ArticleFormModule,
+    EditArticleModule,
   ],
   providers: [
     PersistanceService,

@@ -29,11 +29,16 @@ export class ArticleFormComponent implements OnInit {
       title: this.initialValuesProps.title,
       description: this.initialValuesProps.description,
       body: this.initialValuesProps.body,
-      //tagList: this.initialValuesProps.tagList.join(' '),
+      tagList: this.initialValuesProps.tagList.join(' '),
     });
   }
 
   onSubmit(): void {
-    this.articleSubmitEvent.emit(this.form.value);
+    const articleInput: ArticleInputInterface = {
+      ...this.form.value,
+
+      tagList: this.form.value.tagList.split(' '),
+    };
+    this.articleSubmitEvent.emit(articleInput);
   }
 }

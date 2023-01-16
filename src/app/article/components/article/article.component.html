@@ -15,7 +15,7 @@
           </span>
         </div>
         <span *ngIf="isAuthor$ | async">
-          <a [routerLink]="['/articles', article.slug, '/edit']">
+          <a [routerLink]="['/articles', article.slug, 'edit']">
             <i class="ion-edit"> Edit Article </i>
           </a>
           <button
